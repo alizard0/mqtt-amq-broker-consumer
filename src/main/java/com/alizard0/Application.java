@@ -22,7 +22,7 @@ public class Application {
 
     // Consume messages
     while(true) {
-      Message message = connection.receive(5, TimeUnit.SECONDS);
+      Message message = connection.receive(500, TimeUnit.SECONDS);
       System.out.println("Received: " + new String(message.getPayload()));
     }
 
@@ -32,7 +32,7 @@ public class Application {
   private static BlockingConnection connect() throws Exception {
     MQTT mqtt = new MQTT();
     mqtt.setHost("tcp://localhost:1883");
-    mqtt.setCleanSession(true);
+    mqtt.setCleanSession(true); // durable-sessions = false
     BlockingConnection connection = mqtt.blockingConnection();
     connection.connect();
     System.out.println("Connected!");
