@@ -33,6 +33,9 @@ public class Application {
     MQTT mqtt = new MQTT();
     mqtt.setHost("tcp://localhost:1883");
     mqtt.setCleanSession(true); // durable-sessions = false
+    // if you wanna make durable-sessions
+    //mqtt.setCleanSession(false);
+    //mqtt.setClientId("mqtt-consumer");
     BlockingConnection connection = mqtt.blockingConnection();
     connection.connect();
     System.out.println("Connected!");
